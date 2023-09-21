@@ -1,0 +1,41 @@
+
+1: a traves de un formulario inicar la imagen que deseo cargar
+2: tenga un "Contenedor" a donde pueda ir salvando las imagenes (moverlas)
+3: atraves del mismo formulario le puedo indicar 1, 2, 3 que deseo cargar esa imagen
+
+generalo ahora en html y css
+
+<!--    Path: practicaBonus.html -->
+<!-- Compare this snippet from practica06.html: -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <form action="" id="formulario">
+            <label for="imagen">Imagen</label>
+            <input type="text" id="imagen">
+            <input type="submit" value="Cargar imagen">
+        </form>
+        <div id="contenedor">
+        </div>
+        <script>
+            const formulario = document.getElementById("formulario");
+            const contenedor = document.getElementById("contenedor");
+            formulario.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const imagen = document.getElementById("imagen").value;
+                const img = document.createElement("img");
+                img.src = 'https://picsum.photos/id/${imagen}/200/200';
+                contenedor.appendChild(img);
+            });
+        </script>
+
+    </body>
+    </html>
+
+
+
