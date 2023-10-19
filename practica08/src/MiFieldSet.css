@@ -1,0 +1,28 @@
+form{
+    box-shadow: 10px 20px 15px;
+    width: 300px;
+    border: 1px solid rgb(146, 146, 146);
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+}
+fieldset{
+    border-radius: 5px;
+    border: 1px solid rgb(146, 146, 146);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+input{
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(146, 146, 146);
+    padding: 10px;
+}
+input[type = "submit"]{
+    color: white;
+    background-color: blue;
+}
+label{
+    display: block;
+}
