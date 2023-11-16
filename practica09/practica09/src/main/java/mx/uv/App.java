@@ -15,7 +15,6 @@ public class App
     {
         System.out.println( "Hello World!" );
 
-        //fuente:https://gist.github.com/saeidzebardast/e375b7d17be3e0f4dddf
         options("/*",(request,response)->{
         String accessControlRequestHeaders=request.headers("Access-Control-Request-Headers");
         if(accessControlRequestHeaders!=null){
