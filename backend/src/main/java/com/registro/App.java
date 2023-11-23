@@ -12,6 +12,7 @@ public class App {
 
         List<String> usuarios = new ArrayList<>();
 
+        // se agregan los usuarios maximo 15
         post("/usuarios", (request, response) -> {
             if (usuarios.size() >= 15) {
                 response.status(400); 
@@ -49,6 +50,18 @@ public class App {
                 usuarios.set(indice, usuarioActualizado);
 
                 return "Usuario actualizado correctamente";
+            } else {
+                response.status(404); 
+                return "Usuario no encontrado";
+            }
+        });
+
+        // se elimina el usuario con el id que se le pase
+        delete("/usuarios/:indice", (request, response) -> {
+            int indice = Integer.parseInt(request.params(":indice"));
+            if (indice >= 0 && indice < usuarios.size()) {
+                usuarios.remove(indice);
+                return "Usuario eliminado correctamente";
             } else {
                 response.status(404); 
                 return "Usuario no encontrado";
