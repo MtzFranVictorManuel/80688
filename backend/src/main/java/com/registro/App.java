@@ -1,8 +1,10 @@
 package com.registro;
 
 import static spark.Spark.*;
+import com.google.gson.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Hello world!
  *
@@ -10,12 +12,25 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
 
+        options("/*", (request, response) -> {
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+            }
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
+            return "OK";
+        });
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+
         List<String> usuarios = new ArrayList<>();
 
         // se agregan los usuarios maximo 15
         post("/usuarios", (request, response) -> {
             if (usuarios.size() >= 15) {
-                response.status(400); 
+                response.status(400);
                 return "No es posible agregar más usuarios. Límite alcanzado (15 usuarios).";
             }
             String nombre = request.queryParams("nombre");
@@ -32,9 +47,9 @@ public class App {
 
             return "Usuario creado correctamente";
         });
-        //devulve a todos los usuarios
-        get("/usuarios", (request, response) -> {           
-            return usuarios.toString(); 
+        // devulve a todos los usuarios
+        get("/usuarios", (request, response) -> {
+            return usuarios.toString();
         });
 
         // se modifica el usuario con el id que se le pase
@@ -51,7 +66,7 @@ public class App {
 
                 return "Usuario actualizado correctamente";
             } else {
-                response.status(404); 
+                response.status(404);
                 return "Usuario no encontrado";
             }
         });
@@ -63,9 +78,10 @@ public class App {
                 usuarios.remove(indice);
                 return "Usuario eliminado correctamente";
             } else {
-                response.status(404); 
+                response.status(404);
                 return "Usuario no encontrado";
             }
         });
+
     }
 }

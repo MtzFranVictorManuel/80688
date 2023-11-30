@@ -9,13 +9,12 @@ const MiComponente = () => {
   });
 
   // Función para enviar datos al backend al hacer submit en el formulario
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     try {
       const response = await axios.post('http://localhost:4567/usuarios', usuario);
-      console.log('Respuesta del servidor:', response.data);
+      console.log('Respuesta del servidor:', response);
       // Puedes manejar la respuesta del servidor aquí, como actualizar el estado del componente, mostrar un mensaje, etc.
+      return response.data;
     } catch (error) {
       console.error('Error al enviar datos al servidor:', error);
       // Manejar errores de la solicitud al servidor
