@@ -1,6 +1,7 @@
 import { Button, Box, TextField } from "@mui/material"
 import axios from "axios"
 import { useState } from "react"
+import Popup from "./Popup"
 
 function Formulario(props) {
     const [Cargando, setCargando] = useState (false)
@@ -53,6 +54,9 @@ function Formulario(props) {
                 </Box>
                 <Box m={5}>
                     <Button variant="contained" type="submit" color="primary" fullWidth disabled={Cargando}>Iniciar Sesión</Button>
+                </Box>
+                <Box m={5}>
+                    <Popup></Popup>
                 </Box>
             </form>
         </>

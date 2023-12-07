@@ -11,8 +11,9 @@ const MiComponente = () => {
   // Función para enviar datos al backend al hacer submit en el formulario
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:4567/usuarios', usuario);
+      const response = await axios.post('http://localhost:4567/usuarios', {params: usuario});
       console.log('Respuesta del servidor:', response);
+      console.log('Mostra usuario:' , usuario);
       // Puedes manejar la respuesta del servidor aquí, como actualizar el estado del componente, mostrar un mensaje, etc.
       return response.data;
     } catch (error) {
@@ -23,7 +24,8 @@ const MiComponente = () => {
 
   // Función para manejar cambios en los campos del formulario
   const handleChange = (event) => {
-    setUsuario({ ...usuario, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+    setUsuario({ ...usuario, [name]: value });
   };
 
   return (
